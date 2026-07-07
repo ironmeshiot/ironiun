@@ -155,6 +155,48 @@
     .wallet-meta span { color: #90b0d8; font-family: monospace; }
     .wstatus { color: #7a9fbf; font-size: 0.9rem; margin-top: 14px; min-height: 20px; }
 
+    /* ── SERVICIOS ── */
+    .srv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 20px; }
+    .srv-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
+    .srv-card:hover { border-color: rgba(26,111,255,0.4); transform: translateY(-3px); }
+    .srv-card.featured { border-color: rgba(26,111,255,0.35); background: rgba(26,111,255,0.06); }
+    .srv-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 12px; border-radius: 999px; margin-bottom: 14px; }
+    .srv-tag.popular { background: rgba(26,111,255,0.2); color: #60a8ff; }
+    .srv-tag.basic { background: rgba(96,216,144,0.15); color: #60d890; }
+    .srv-tag.pro { background: rgba(200,168,64,0.15); color: #c8a840; }
+    .srv-tag.premium { background: rgba(180,100,255,0.15); color: #c080ff; }
+    .srv-price { font-size: 2.2rem; font-weight: 800; color: #60a8ff; line-height: 1; }
+    .srv-price span { font-size: 1rem; color: var(--muted); font-weight: 400; margin-left: 4px; }
+    .srv-title { font-size: 1.05rem; font-weight: 700; margin: 10px 0 10px; }
+    .srv-features { list-style: none; flex: 1; }
+    .srv-features li { color: var(--muted); font-size: 0.9rem; padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 8px; }
+    .srv-features li:last-child { border-bottom: none; }
+    .srv-features li::before { content: "✓"; color: #60d890; font-weight: 700; flex-shrink: 0; }
+    .srv-btn { background: linear-gradient(135deg,#2060ff,#1aafff); color: white; border: none; border-radius: 999px; padding: 12px; font-size: 0.95rem; font-weight: 600; cursor: pointer; width: 100%; margin-top: 20px; transition: opacity .2s, transform .2s; }
+    .srv-btn:hover { opacity: .9; transform: translateY(-1px); }
+
+    /* ── MODAL ── */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: #0d1220; border: 1px solid rgba(26,111,255,0.25); border-radius: 24px; padding: 36px; max-width: 540px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
+    .modal h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; }
+    .modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; line-height: 1; }
+    .modal-close:hover { color: var(--text); }
+    .mfield { display: grid; gap: 6px; margin-bottom: 14px; }
+    .mfield label { color: var(--muted); font-size: 0.88rem; }
+    .mfield input, .mfield textarea, .mfield select { width: 100%; background: rgba(15,20,34,0.9); border: 1px solid var(--border); border-radius: 12px; color: var(--text); padding: 12px 14px; font-size: 0.95rem; font-family: inherit; }
+    .mfield textarea { resize: vertical; min-height: 90px; }
+    .mfield input:focus, .mfield textarea:focus, .mfield select:focus { outline: 2px solid rgba(26,111,255,0.5); outline-offset: 1px; }
+    .modal-pay-box { background: rgba(26,111,255,0.07); border: 1px solid rgba(26,111,255,0.2); border-radius: 14px; padding: 16px; margin: 16px 0; font-size: 0.9rem; }
+    .modal-pay-box strong { color: #60a8ff; }
+    .modal-pay-addr { font-family: monospace; font-size: 0.78rem; color: #90c0ff; word-break: break-all; background: rgba(26,111,255,0.1); border-radius: 8px; padding: 8px 10px; margin-top: 8px; cursor: pointer; transition: background .2s; }
+    .modal-pay-addr:hover { background: rgba(26,111,255,0.2); }
+    .modal-submit { background: linear-gradient(135deg,#2060ff,#1aafff); color: white; border: none; border-radius: 999px; padding: 14px; font-size: 1rem; font-weight: 700; cursor: pointer; width: 100%; margin-top: 6px; box-shadow: 0 10px 24px rgba(12,63,163,0.3); transition: opacity .2s; }
+    .modal-submit:hover { opacity: .9; }
+    .modal-submit:disabled { opacity: .45; cursor: default; }
+    .modal-success { display: none; text-align: center; padding: 20px 0; }
+    .modal-success .big-check { font-size: 3rem; margin-bottom: 12px; }
+
     /* ── FOOTER ── */
     footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; color: var(--muted); font-size: 0.9rem; }
     footer a { color: #5a7fad; text-decoration: none; margin: 0 12px; }
@@ -174,8 +216,8 @@
   <div class="nav-links">
     <a href="#about">Acerca</a>
     <a href="#ecosystem">Ecosistema</a>
-    <a href="#tokenomics">Tokenomics</a>
-    <a href="#airdrop">Obtener IRN</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#airdrop">Airdrop</a>
     <a href="#wallet">Billetera</a>
   </div>
   <a href="#wallet" class="nav-cta">Conectar billetera</a>
@@ -425,6 +467,122 @@
   </div>
 </section>
 
+<!-- SERVICIOS -->
+<section id="servicios" style="border-top:1px solid var(--border);">
+  <h2 class="section-title">Servicios pagables con IRN</h2>
+  <p class="section-sub">Usá los IRN que recibiste gratis para contratar servicios reales. Cada pago crea utilidad real para el token.</p>
+
+  <div class="srv-grid">
+    <div class="srv-card">
+      <span class="srv-tag basic">Básico</span>
+      <div class="srv-price">500 <span>IRN</span></div>
+      <div class="srv-title">Landing Page</div>
+      <ul class="srv-features">
+        <li>1 página estática moderna</li>
+        <li>Diseño responsivo (móvil + desktop)</li>
+        <li>Secciones: hero, sobre vos, contacto</li>
+        <li>Formulario de contacto funcional</li>
+        <li>Entrega en 72 horas</li>
+      </ul>
+      <button class="srv-btn" onclick="openModal('Landing Page', 500)">Contratar con IRN</button>
+    </div>
+
+    <div class="srv-card featured">
+      <span class="srv-tag popular">⭐ Popular</span>
+      <div class="srv-price">500 <span>IRN</span></div>
+      <div class="srv-title">Portfolio / CV Digital</div>
+      <ul class="srv-features">
+        <li>Página personal profesional</li>
+        <li>Secciones: bio, proyectos, skills, contacto</li>
+        <li>Links a redes sociales / GitHub</li>
+        <li>Diseño personalizable</li>
+        <li>Entrega en 72 horas</li>
+      </ul>
+      <button class="srv-btn" onclick="openModal('Portfolio / CV Digital', 500)">Contratar con IRN</button>
+    </div>
+
+    <div class="srv-card">
+      <span class="srv-tag pro">Negocio</span>
+      <div class="srv-price">1,000 <span>IRN</span></div>
+      <div class="srv-title">Menú Digital QR</div>
+      <ul class="srv-features">
+        <li>Menú online para restaurante / negocio</li>
+        <li>Categorías, productos y precios</li>
+        <li>Código QR listo para imprimir</li>
+        <li>Actualizable fácilmente</li>
+        <li>Entrega en 5 días</li>
+      </ul>
+      <button class="srv-btn" onclick="openModal('Menú Digital QR', 1000)">Contratar con IRN</button>
+    </div>
+
+    <div class="srv-card">
+      <span class="srv-tag premium">Premium</span>
+      <div class="srv-price">2,000 <span>IRN</span></div>
+      <div class="srv-title">Sitio Multi-página</div>
+      <ul class="srv-features">
+        <li>Hasta 3 páginas (inicio, servicios, contacto)</li>
+        <li>Formulario de contacto funcional</li>
+        <li>Integración con Google Maps</li>
+        <li>Optimizado para buscadores (SEO básico)</li>
+        <li>Entrega en 7 días</li>
+      </ul>
+      <button class="srv-btn" onclick="openModal('Sitio Multi-página', 2000)">Contratar con IRN</button>
+    </div>
+  </div>
+
+  <div style="background:rgba(96,216,144,0.06);border:1px solid rgba(96,216,144,0.18);border-radius:16px;padding:20px 28px;margin-top:36px;max-width:700px;margin-left:auto;margin-right:auto;font-size:0.92rem;color:var(--muted);line-height:1.7;">
+    💡 <strong style="color:var(--text);">¿Cómo funciona?</strong> Completás el formulario → enviás los IRN a nuestra wallet → nos avisás → entregamos tu servicio. Sin intermediarios, sin cargos ocultos. El pago queda registrado en la blockchain de Polygon.
+  </div>
+</section>
+
+<!-- MODAL DE CONTRATACIÓN -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="modal-form-content">
+      <h2 id="modal-title">Contratar servicio</h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:20px;">Completá el formulario y enviá el pago en IRN. Te contactamos en menos de 24 horas.</p>
+      <form id="service-form" onsubmit="submitService(event)">
+        <input type="hidden" id="modal-service-name" name="servicio" />
+        <input type="hidden" id="modal-service-price" name="precio_irn" />
+        <div class="mfield">
+          <label>Tu nombre</label>
+          <input type="text" name="nombre" placeholder="Nombre completo" required />
+        </div>
+        <div class="mfield">
+          <label>Email de contacto</label>
+          <input type="email" name="email" placeholder="tu@email.com" required />
+        </div>
+        <div class="mfield">
+          <label>Contame qué necesitás</label>
+          <textarea name="descripcion" placeholder="Describí brevemente tu proyecto, rubro, colores, referencias, etc." required></textarea>
+        </div>
+        <div class="mfield">
+          <label>Tu wallet de Polygon (para verificar el pago)</label>
+          <input type="text" id="service-wallet" name="wallet_pagador" placeholder="0x..." required />
+        </div>
+
+        <div class="modal-pay-box">
+          <strong>Paso siguiente: enviá el pago</strong>
+          <p style="color:var(--muted);margin-top:6px;">Enviá <strong id="modal-price-display" style="color:#60d890;"></strong> a esta wallet en la red Polygon:</p>
+          <div class="modal-pay-addr" id="pay-addr-display" onclick="copyPayAddr()" title="Click para copiar">
+            0x0ea2bf929e452ee0780e2268d1ccaf9236b2c02b
+          </div>
+          <p style="color:var(--muted);font-size:0.8rem;margin-top:8px;">Click en la dirección para copiar · Solo red Polygon</p>
+        </div>
+
+        <button class="modal-submit" type="submit">📨 Enviar solicitud</button>
+      </form>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <div class="big-check">✅</div>
+      <h2 style="margin-bottom:10px;">¡Solicitud enviada!</h2>
+      <p style="color:var(--muted);line-height:1.7;">Recibimos tu pedido. Una vez que confirmemos el pago en la blockchain, nos ponemos en contacto por email en menos de 24 horas.</p>
+      <button onclick="closeModal()" style="margin-top:20px;background:rgba(255,255,255,0.07);border:1px solid var(--border);color:var(--text);border-radius:999px;padding:11px 28px;font-size:0.95rem;cursor:pointer;">Cerrar</button>
+    </div>
+  </div>
+</div>
+
 <!-- AIRDROP -->
 <section id="airdrop" class="airdrop-section">
   <div class="airdrop-box">
@@ -585,6 +743,53 @@
       });
     } catch(e){ console.error(e); }
   }
+  // ── SERVICIOS ──
+  const IRONMESH_WALLET = '0x0ea2bf929e452ee0780e2268d1ccaf9236b2c02b';
+
+  function openModal(service, price) {
+    document.getElementById('modal-title').textContent = service;
+    document.getElementById('modal-service-name').value = service;
+    document.getElementById('modal-service-price').value = price + ' IRN';
+    document.getElementById('modal-price-display').textContent = price.toLocaleString() + ' IRN';
+    document.getElementById('modal-form-content').style.display = '';
+    document.getElementById('modal-success').style.display = 'none';
+    document.getElementById('service-form').reset();
+    document.getElementById('modal-service-name').value = service;
+    document.getElementById('modal-service-price').value = price + ' IRN';
+    document.getElementById('modal-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function closeModalOutside(e) {
+    if(e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+  function copyPayAddr() {
+    navigator.clipboard.writeText(IRONMESH_WALLET).then(() => {
+      const el = document.getElementById('pay-addr-display');
+      const orig = el.textContent;
+      el.textContent = '✓ ¡Copiado!';
+      setTimeout(() => { el.textContent = orig; }, 2000);
+    });
+  }
+  async function submitService(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.modal-submit');
+    btn.disabled = true; btn.textContent = 'Enviando...';
+    const data = Object.fromEntries(new FormData(e.target));
+    try {
+      await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ tipo: 'SERVICIO', ...data })
+      });
+    } catch(err) {}
+    document.getElementById('modal-form-content').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'block';
+  }
+
   // ── AIRDROP ──
   // Las solicitudes se guardan en localStorage para evitar duplicados
   // y se envían a Formspree. Configurar FORMSPREE_ID con el ID del form.
