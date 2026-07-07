@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ironiun (IRN) — Token en Polygon</title>
+  <meta name="description" content="Ironiun (IRN) es un token ERC-20 de supply fijo en Polygon POS. 100,000,000 IRN en circulación."/>
+  <!-- OG / WhatsApp / Twitter preview -->
+  <meta property="og:title" content="Ironiun (IRN) — Token en Polygon"/>
+  <meta property="og:description" content="Token ERC-20 de supply fijo. 100,000,000 IRN · Polygon POS · Código verificado."/>
+  <meta property="og:image" content="https://ironiun.ironmesh.com.ar/logo.png"/>
+  <meta property="og:url" content="https://ironiun.ironmesh.com.ar"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="Ironiun (IRN)"/>
+  <meta name="twitter:description" content="Token ERC-20 · 100M IRN · Polygon POS"/>
+  <meta name="twitter:image" content="https://ironiun.ironmesh.com.ar/logo.png"/>
+  <style>
+    :root {
+      --blue: #1a6fff;
+      --blue-glow: rgba(26,111,255,0.35);
+      --bg: #07090f;
+      --card: rgba(12,17,30,0.96);
+      --border: rgba(255,255,255,0.07);
+      --text: #e4edf7;
+      --muted: #7a90b3;
+      font-family: Inter, "Segoe UI", sans-serif;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 32px;
+      background: rgba(7,9,15,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.1rem; }
+    .nav-brand img { width: 34px; height: 34px; border-radius: 50%; box-shadow: 0 0 10px var(--blue-glow); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.95rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--blue); color: white; padding: 9px 20px; border-radius: 999px; font-size: 0.9rem; font-weight: 600; text-decoration: none; box-shadow: 0 0 18px var(--blue-glow); transition: opacity .2s; }
+    .nav-cta:hover { opacity: .85; }
+    @media (max-width:640px) { .nav-links { display:none; } nav { padding: 12px 20px; } }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
+    section.full { max-width: 100%; padding: 0; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 88vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(26,111,255,0.18), transparent 70%);
+      padding: 80px 24px 60px;
+    }
+    .hero-logo { width: 110px; height: 110px; border-radius: 50%; box-shadow: 0 0 40px rgba(26,111,255,0.5), 0 0 80px rgba(26,111,255,0.2); margin-bottom: 28px; }
+    .hero h1 { font-size: clamp(2.8rem,6vw,5rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; }
+    .hero h1 span { background: linear-gradient(90deg, #60a8ff, #1a6fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { color: var(--muted); font-size: clamp(1rem,2vw,1.25rem); margin: 18px 0 36px; max-width: 520px; line-height: 1.6; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary { background: var(--blue); color: white; padding: 14px 28px; border-radius: 999px; font-weight: 600; text-decoration: none; box-shadow: 0 0 24px var(--blue-glow); transition: transform .2s, opacity .2s; }
+    .btn-primary:hover { transform: translateY(-2px); opacity: .9; }
+    .btn-secondary { background: rgba(255,255,255,0.06); color: var(--text); padding: 14px 28px; border-radius: 999px; font-weight: 600; text-decoration: none; border: 1px solid var(--border); transition: background .2s; }
+    .btn-secondary:hover { background: rgba(255,255,255,0.10); }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 1px;
+      background: var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .stat { background: var(--bg); padding: 28px 32px; text-align: center; }
+    .stat-value { font-size: 1.6rem; font-weight: 700; color: #a8d4ff; }
+    .stat-label { color: var(--muted); font-size: 0.85rem; margin-top: 4px; text-transform: uppercase; letter-spacing: .08em; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-text h2 { font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 700; margin-bottom: 18px; }
+    .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 14px; font-size: 1.05rem; }
+    .about-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; }
+    .about-card h3 { color: #60a8ff; font-size: 0.85rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 18px; }
+    .contract-addr { font-family: monospace; font-size: 0.82rem; color: #a8c8f0; word-break: break-all; background: rgba(26,111,255,0.08); border-radius: 10px; padding: 12px 14px; margin: 8px 0; }
+    .copy-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+    .copy-btn { background: rgba(26,111,255,0.15); border: 1px solid rgba(26,111,255,0.3); color: #80b8ff; border-radius: 8px; padding: 6px 14px; font-size: 0.82rem; cursor: pointer; transition: background .2s; }
+    .copy-btn:hover { background: rgba(26,111,255,0.28); }
+    .add-mm-btn { background: linear-gradient(135deg,#f6851b,#e2761b); color: white; border: none; border-radius: 999px; padding: 13px 22px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 24px rgba(246,133,27,0.35); transition: transform .18s, opacity .18s; margin-top: 20px; }
+    .add-mm-btn:hover { transform: translateY(-2px); opacity: .92; }
+    .info-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+    .info-row:last-child { border-bottom: none; }
+    .info-row span:first-child { color: var(--muted); }
+    .info-row span:last-child { font-weight: 600; }
+
+    /* ── TOKENOMICS ── */
+    .section-title { font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 700; margin-bottom: 12px; }
+    .section-sub { color: var(--muted); margin-bottom: 48px; font-size: 1.05rem; line-height: 1.6; }
+    .tokenomics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 20px; }
+    .tcard { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 28px; }
+    .tcard-icon { font-size: 2rem; margin-bottom: 14px; }
+    .tcard h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .tcard p { color: var(--muted); font-size: 0.93rem; line-height: 1.6; }
+    .tcard .num { font-size: 1.5rem; font-weight: 800; color: #60a8ff; margin-bottom: 6px; }
+
+    /* ── HOW TO ADD ── */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 20px; }
+    .step { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 28px; }
+    .step-num { width: 38px; height: 38px; border-radius: 50%; background: var(--blue); color: white; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 1rem; box-shadow: 0 0 14px var(--blue-glow); }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 0.93rem; line-height: 1.6; }
+    .step code { font-family: monospace; background: rgba(26,111,255,0.12); padding: 2px 7px; border-radius: 6px; font-size: 0.82rem; color: #90c0ff; word-break: break-all; }
+
+    /* ── WALLET ── */
+    .wallet-section { background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(26,111,255,0.12), transparent 70%); }
+    .wallet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 768px) { .wallet-grid { grid-template-columns: 1fr; } }
+    .wcard { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; }
+    .wcard h2 { font-size: 0.85rem; color: #5a7fad; text-transform: uppercase; letter-spacing: .15em; margin-bottom: 18px; }
+    .balance-display { font-size: clamp(2rem,4vw,3rem); font-weight: 800; color: #f0f6ff; margin: 20px 0; }
+    .balance-display span { font-size: 1rem; color: var(--muted); margin-left: 8px; font-weight: 400; }
+    .wfield { display: grid; gap: 7px; margin-bottom: 16px; }
+    .wfield label { color: var(--muted); font-size: 0.9rem; }
+    .wfield input { width: 100%; background: rgba(15,20,34,0.9); border: 1px solid var(--border); border-radius: 12px; color: var(--text); padding: 13px 15px; font-size: 0.98rem; }
+    .wfield input:focus { outline: 2px solid rgba(26,111,255,0.5); outline-offset: 1px; }
+    .wbtn { background: linear-gradient(135deg,#2060ff,#1aafff); color: white; border: none; border-radius: 999px; padding: 13px 24px; font-size: 0.97rem; font-weight: 600; cursor: pointer; width: 100%; margin-top: 4px; box-shadow: 0 14px 28px rgba(12,63,163,0.28); transition: transform .18s, opacity .18s; }
+    .wbtn:hover { transform: translateY(-1px); }
+    .wbtn:disabled { opacity: .45; cursor: default; transform: none; }
+    .wbtn-outline { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 999px; padding: 11px 20px; font-size: 0.92rem; cursor: pointer; transition: background .18s; margin-top: 10px; width: 100%; }
+    .wbtn-outline:hover { background: rgba(255,255,255,0.05); }
+    .wallet-meta { font-size: 0.88rem; color: var(--muted); margin-top: 10px; }
+    .wallet-meta span { color: #90b0d8; font-family: monospace; }
+    .wstatus { color: #7a9fbf; font-size: 0.9rem; margin-top: 14px; min-height: 20px; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+    footer a { color: #5a7fad; text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: var(--text); }
+    .footer-logo { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 16px; font-weight: 700; color: var(--text); }
+    .footer-logo img { width: 28px; height: 28px; border-radius: 50%; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <img src="logo.png" alt="IRN"/>
+    Ironiun
+  </div>
+  <div class="nav-links">
+    <a href="#about">Acerca</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#como-agregar">Cómo obtener</a>
+    <a href="#wallet">Billetera</a>
+  </div>
+  <a href="#wallet" class="nav-cta">Conectar billetera</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero full" id="hero">
+  <img src="logo.png" alt="IRN Logo" class="hero-logo"/>
+  <h1>El token <span>IRN</span><br/>en Polygon</h1>
+  <p class="hero-sub">Ironiun es un token ERC-20 de supply fijo desplegado en Polygon POS. Sin minteo, sin admin, sin sorpresas.</p>
+  <div class="hero-btns">
+    <a href="https://dapp.quickswap.exchange/swap?outputCurrency=0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7" target="_blank" rel="noopener" class="btn-primary">Comprar IRN</a>
+    <a href="#wallet" class="btn-secondary">Abrir billetera</a>
+    <a href="https://polygon.blockscout.com/address/0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7" target="_blank" rel="noopener" class="btn-secondary">Ver en Blockscout</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar full">
+  <div class="stat"><div class="stat-value">100,000,000</div><div class="stat-label">Supply total IRN</div></div>
+  <div class="stat"><div class="stat-value">Polygon</div><div class="stat-label">Red blockchain</div></div>
+  <div class="stat"><div class="stat-value">18</div><div class="stat-label">Decimales</div></div>
+  <div class="stat"><div class="stat-value">Verificado</div><div class="stat-label">Sourcify & Blockscout</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>¿Qué es Ironiun?</h2>
+      <p>Ironiun (IRN) es un token ERC-20 de supply completamente fijo, desplegado en la red Polygon POS. El supply total de 100,000,000 IRN fue acuñado en el bloque de creación y no puede aumentar.</p>
+      <p>El contrato no tiene funciones de administración ni privilegios especiales. Cualquiera puede verificar el código fuente publicado en Sourcify y Blockscout.</p>
+    </div>
+    <div class="about-card">
+      <h3>Información del contrato</h3>
+      <div class="info-row"><span>Nombre</span><span>Ironiun</span></div>
+      <div class="info-row"><span>Símbolo</span><span>IRN</span></div>
+      <div class="info-row"><span>Red</span><span>Polygon Mainnet (137)</span></div>
+      <div class="info-row"><span>Supply</span><span>100,000,000 IRN</span></div>
+      <div class="info-row"><span>Decimales</span><span>18</span></div>
+      <div class="info-row"><span>Minteo</span><span>No posible</span></div>
+      <h3 style="margin-top:20px;">Dirección del contrato</h3>
+      <div class="contract-addr" id="contract-addr-text">0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7</div>
+      <div class="copy-row">
+        <button class="copy-btn" onclick="copyAddress()">📋 Copiar dirección</button>
+        <span id="copy-confirm" style="color:#60d890;font-size:0.85rem;display:none">¡Copiado!</span>
+      </div>
+    </div>
+  </div>
+</section>
+  </div>
+</section>
+
+<!-- TOKENOMICS (about section closing tag already added above) -->
+<section id="tokenomics" style="background: rgba(26,111,255,0.04); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div style="max-width:1100px; margin:0 auto;">
+    <h2 class="section-title">Tokenomics</h2>
+    <p class="section-sub">Supply fijo, transparente y verificable en la blockchain.</p>
+    <div class="tokenomics-grid">
+      <div class="tcard">
+        <div class="tcard-icon">🔒</div>
+        <div class="num">100M</div>
+        <h3>Supply fijo</h3>
+        <p>El total de 100,000,000 IRN fue emitido en el bloque de creación. No existe función de minteo.</p>
+      </div>
+      <div class="tcard">
+        <div class="tcard-icon">🔥</div>
+        <div class="num">Burn</div>
+        <h3>Quema deflacionaria</h3>
+        <p>Cualquier holder puede quemar sus tokens, reduciendo permanentemente el supply circulante.</p>
+      </div>
+      <div class="tcard">
+        <div class="tcard-icon">⛓️</div>
+        <div class="num">Polygon</div>
+        <h3>Red eficiente</h3>
+        <p>Fees de gas mínimos (~$0.001 por transferencia) en la red Polygon POS.</p>
+      </div>
+      <div class="tcard">
+        <div class="tcard-icon">📋</div>
+        <div class="num">ERC-20</div>
+        <h3>Estándar abierto</h3>
+        <p>Compatible con cualquier wallet, exchange o protocolo DeFi que soporte ERC-20 en Polygon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO AGREGAR -->
+<section id="como-agregar">
+  <h2 class="section-title">Cómo agregar IRN a MetaMask</h2>
+  <p class="section-sub">En 4 pasos podés ver y transferir IRN desde cualquier dispositivo.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Instalar MetaMask</h3>
+      <p>Descargá MetaMask desde <a href="https://metamask.io" target="_blank" style="color:#60a8ff">metamask.io</a> en tu navegador o celular.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Agregar red Polygon</h3>
+      <p>Entrá a <a href="https://chainlist.org" target="_blank" style="color:#60a8ff">chainlist.org</a>, buscá "Polygon Mainnet" y tocá "Add to MetaMask".</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Importar token IRN</h3>
+      <p>Usá el botón de abajo para agregar IRN a MetaMask en un clic, o copiá la dirección manualmente:<br/><br/><code>0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7</code></p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Comprá IRN</h3>
+      <p>Con POL en Polygon podés intercambiar directamente en QuickSwap. El token ya tiene pool de liquidez activo.</p>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+    <a href="https://dapp.quickswap.exchange/swap?outputCurrency=0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;">&#x1F4B1; Comprar IRN en QuickSwap</a>
+    <button class="add-mm-btn" onclick="addToMetaMask()">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" width="24" height="24" alt="MetaMask"/>
+      Agregar IRN a MetaMask
+    </button>
+    <p style="color:var(--muted);font-size:0.88rem;margin-top:10px;">Requiere MetaMask instalado y red Polygon activa.</p>
+  </div>
+  </div>
+</section>
+
+<!-- WALLET -->
+<section id="wallet" class="wallet-section">
+  <h2 class="section-title">Billetera IRN</h2>
+  <p class="section-sub">Conectá MetaMask para ver tu saldo y enviar tokens.</p>
+  <div class="wallet-grid">
+    <div class="wcard">
+      <h2>Tu saldo</h2>
+      <button class="wbtn" id="connect-btn" type="button">Conectar billetera</button>
+      <div class="balance-display"><span id="balance-value">--</span><span id="balance-token">IRN</span></div>
+      <div class="wallet-meta">Dirección: <span id="wallet-address">No conectada</span></div>
+      <div class="wallet-meta" id="network-info">Red: —</div>
+      <button class="wbtn-outline" id="refresh-btn" type="button">Actualizar saldo</button>
+      <div class="wstatus" id="status-text">Conecta tu billetera para comenzar.</div>
+    </div>
+    <div class="wcard">
+      <h2>Enviar IRN</h2>
+      <form id="transfer-form">
+        <div class="wfield">
+          <label for="recipient-address">Dirección de destino</label>
+          <input id="recipient-address" type="text" placeholder="0x..." autocomplete="off" required/>
+        </div>
+        <div class="wfield">
+          <label for="transfer-amount">Cantidad de IRN</label>
+          <input id="transfer-amount" type="number" min="0" step="0.0001" placeholder="0.0" required/>
+        </div>
+        <button class="wbtn" id="send-btn" type="submit">Enviar IRN</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="logo.png" alt="IRN"/>
+    Ironiun (IRN)
+  </div>
+  <div>
+    <a href="https://dapp.quickswap.exchange/swap?outputCurrency=0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7" target="_blank" rel="noopener">QuickSwap</a>
+    <a href="https://polygon.blockscout.com/address/0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7" target="_blank" rel="noopener">Blockscout</a>
+    <a href="https://repo.sourcify.dev/137/0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7/" target="_blank" rel="noopener">Sourcify</a>
+    <a href="https://ironmesh.com.ar" target="_blank" rel="noopener">IronMesh</a>
+  </div>
+  <div style="margin-top:12px;">Contrato: 0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7 · Polygon Mainnet</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.9.1/dist/ethers.umd.min.js" crossorigin="anonymous"></script>
+<script>
+  const contractAddress = "0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7";
+  const IRN_ABI = [
+    "function balanceOf(address account) view returns (uint256)",
+    "function transfer(address to, uint256 amount) returns (bool)",
+    "function decimals() view returns (uint8)",
+    "function symbol() view returns (string)"
+  ];
+  let provider, signer, selectedAddress, tokenDecimals = 18, tokenSymbol = "IRN";
+  const statusText = document.getElementById("status-text");
+  const walletAddressEl = document.getElementById("wallet-address");
+  const networkInfoEl = document.getElementById("network-info");
+  const balanceValue = document.getElementById("balance-value");
+  const balanceToken = document.getElementById("balance-token");
+  const connectBtn = document.getElementById("connect-btn");
+  const refreshBtn = document.getElementById("refresh-btn");
+  const transferForm = document.getElementById("transfer-form");
+  const sendBtn = document.getElementById("send-btn");
+  function setStatus(m) { if(statusText) statusText.textContent = m; }
+  function setWalletAddress(a) { if(walletAddressEl) walletAddressEl.textContent = a ? a.slice(0,6)+"..."+a.slice(-4) : "No conectada"; }
+  function setNetworkInfo(v) { if(networkInfoEl) networkInfoEl.textContent = "Red: "+v; }
+  function setButtonState(e) { [connectBtn,refreshBtn,sendBtn].forEach(b=>{ if(b) b.disabled=!e; }); }
+  function isMetaMaskAvailable() { return Boolean(window.ethereum); }
+  async function connectWallet() {
+    if(!isMetaMaskAvailable()){ setStatus("MetaMask no detectado."); return; }
+    try {
+      await window.ethereum.request({method:"eth_requestAccounts"});
+      const accounts = await window.ethereum.request({method:"eth_accounts"});
+      if(!accounts||!accounts.length){ setStatus("No se encontró ninguna cuenta."); return; }
+      selectedAddress = accounts[0];
+      provider = new ethers.BrowserProvider(window.ethereum);
+      signer = await provider.getSigner();
+      setWalletAddress(selectedAddress);
+      const network = await provider.getNetwork();
+      setNetworkInfo(network.name+" ("+network.chainId+")");
+      setStatus("Billetera conectada.");
+      await loadTokenMetadata();
+    } catch(e){ setStatus("Error al conectar: "+(e?.message||"")); }
+  }
+  async function loadTokenMetadata() {
+    if(!provider) return;
+    const c = new ethers.Contract(contractAddress, IRN_ABI, provider);
+    try { tokenDecimals = Number(await c.decimals()); } catch(e){}
+    try { tokenSymbol = await c.symbol(); } catch(e){}
+    if(balanceToken) balanceToken.textContent = tokenSymbol;
+  }
+  async function updateBalance() {
+    if(!selectedAddress){ setStatus("Conecta primero tu billetera."); return; }
+    setButtonState(false); setStatus("Consultando saldo...");
+    try {
+      const network = await provider.getNetwork();
+      setNetworkInfo(network.name+" ("+network.chainId+")");
+      const code = await provider.getCode(contractAddress);
+      if(!code||code==="0x"){ setStatus("Contrato no encontrado en esta red. Cambia a Polygon."); return; }
+      const c = new ethers.Contract(contractAddress, ["function balanceOf(address) view returns (uint256)"], provider);
+      const raw = await c.balanceOf(selectedAddress);
+      if(balanceValue) balanceValue.textContent = ethers.formatUnits(raw, tokenDecimals);
+      if(balanceToken) balanceToken.textContent = tokenSymbol;
+      setStatus("Saldo actualizado.");
+    } catch(e){ setStatus("Error: "+(e?.message||"")); }
+    finally { setButtonState(true); }
+  }
+  async function sendIroniun(e) {
+    e.preventDefault();
+    if(!selectedAddress){ setStatus("Conecta tu billetera."); return; }
+    const to = document.getElementById("recipient-address").value.trim();
+    const amount = document.getElementById("transfer-amount").value.trim();
+    if(!ethers.isAddress(to)){ setStatus("Dirección de destino inválida."); return; }
+    if(!amount||Number(amount)<=0){ setStatus("Cantidad inválida."); return; }
+    setButtonState(false); setStatus("Enviando... confirmá en MetaMask.");
+    try {
+      const c = new ethers.Contract(contractAddress, IRN_ABI, signer);
+      const tx = await c.transfer(to, ethers.parseUnits(amount, tokenDecimals));
+      await tx.wait();
+      setStatus("Transferencia exitosa. Hash: "+tx.hash);
+      document.getElementById("recipient-address").value="";
+      document.getElementById("transfer-amount").value="";
+      await updateBalance();
+    } catch(e){ setStatus("Error en la transacción."); }
+    finally { setButtonState(true); }
+  }
+  async function addToMetaMask() {
+    if(!window.ethereum){ alert('MetaMask no detectado. Instalalo primero desde metamask.io'); return; }
+    try {
+      await window.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: { type: 'ERC20', options: { address: contractAddress, symbol: 'IRN', decimals: 18, image: 'https://ironiun.ironmesh.com.ar/logo.png' }}
+      });
+    } catch(e){ console.error(e); }
+  }
+  function copyAddress() {
+    const addr = '0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7';
+    navigator.clipboard.writeText(addr).then(() => {
+      const el = document.getElementById('copy-confirm');
+      if(el){ el.style.display='inline'; setTimeout(()=>{ el.style.display='none'; }, 2000); }
+    });
+  }
+  if(isMetaMaskAvailable()){
+    if(connectBtn) connectBtn.addEventListener("click", connectWallet);
+    if(refreshBtn) refreshBtn.addEventListener("click", updateBalance);
+    if(transferForm) transferForm.addEventListener("submit", sendIroniun);
+    window.ethereum.on("accountsChanged", accs => {
+      if(!accs||!accs.length){ selectedAddress=null; setWalletAddress(null); setStatus("MetaMask desconectado."); return; }
+      selectedAddress=accs[0]; setWalletAddress(selectedAddress); setStatus("Cuenta cambiada.");
+    });
+    window.ethereum.on("chainChanged", ()=>{ selectedAddress=null; setWalletAddress(null); setStatus("Red cambiada. Reconectá."); });
+  } else {
+    setStatus("MetaMask no detectado. Instalalo para usar la billetera.");
+    setButtonState(false);
+  }
+</script>
+</body>
+</html>
