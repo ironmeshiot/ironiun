@@ -322,38 +322,106 @@
 
 <!-- CÓMO AGREGAR -->
 <section id="como-agregar">
-  <h2 class="section-title">Cómo agregar IRN a MetaMask</h2>
-  <p class="section-sub">En 4 pasos podés ver y transferir IRN desde cualquier dispositivo.</p>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <h3>Instalar MetaMask</h3>
-      <p>Descargá MetaMask desde <a href="https://metamask.io" target="_blank" style="color:#60a8ff">metamask.io</a> en tu navegador o celular.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <h3>Agregar red Polygon</h3>
-      <p>Entrá a <a href="https://chainlist.org" target="_blank" style="color:#60a8ff">chainlist.org</a>, buscá "Polygon Mainnet" y tocá "Add to MetaMask".</p>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <h3>Importar token IRN</h3>
-      <p>Usá el botón de abajo para agregar IRN a MetaMask en un clic, o copiá la dirección manualmente:<br/><br/><code>0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7</code></p>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <h3>Comprá IRN</h3>
-      <p>Con POL en Polygon podés intercambiar directamente en QuickSwap. El token ya tiene pool de liquidez activo.</p>
+  <h2 class="section-title">Cómo ver y obtener IRN en MetaMask</h2>
+  <p class="section-sub">Seguí estos pasos desde cero. Si ya tenés MetaMask instalado, saltá al paso 2.</p>
+
+  <!-- PASO 1 -->
+  <div class="step" style="max-width:760px;margin:0 auto 20px;border-radius:20px;">
+    <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+      <div class="step-num" style="flex-shrink:0;">1</div>
+      <div style="flex:1;min-width:220px;">
+        <h3>Crear una wallet en MetaMask</h3>
+        <p>MetaMask es la billetera de criptomonedas más usada. Funciona como extensión de Chrome/Firefox o como app móvil.</p>
+        <ol style="color:var(--muted);font-size:0.93rem;line-height:2;margin:12px 0 0 18px;">
+          <li>Entrá a <a href="https://metamask.io/download/" target="_blank" style="color:#60a8ff">metamask.io/download</a> e instalá la extensión o la app</li>
+          <li>Hacé click en <strong style="color:var(--text);">"Crear una nueva wallet"</strong></li>
+          <li>Anotá las <strong style="color:#f0c060;">12 palabras de recuperación</strong> en papel — nunca las compartas</li>
+          <li>Confirmá las palabras y creá tu contraseña</li>
+        </ol>
+        <div style="background:rgba(240,192,96,0.08);border:1px solid rgba(240,192,96,0.2);border-radius:10px;padding:12px 16px;margin-top:14px;font-size:0.88rem;color:#c8a840;">
+          ⚠️ Las 12 palabras son tu wallet. Si las perdés, perdés acceso. Guardalas offline.
+        </div>
+      </div>
     </div>
   </div>
-  <div style="text-align:center;margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
-    <a href="https://dapp.quickswap.exchange/swap?outputCurrency=0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;">&#x1F4B1; Comprar IRN en QuickSwap</a>
-    <button class="add-mm-btn" onclick="addToMetaMask()">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" width="24" height="24" alt="MetaMask"/>
-      Agregar IRN a MetaMask
-    </button>
-    <p style="color:var(--muted);font-size:0.88rem;margin-top:10px;">Requiere MetaMask instalado y red Polygon activa.</p>
+
+  <!-- PASO 2 -->
+  <div class="step" style="max-width:760px;margin:0 auto 20px;border-radius:20px;">
+    <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+      <div class="step-num" style="flex-shrink:0;">2</div>
+      <div style="flex:1;min-width:220px;">
+        <h3>Agregar la red Polygon a MetaMask</h3>
+        <p>IRN vive en la red Polygon (no en Ethereum). Necesitás agregar Polygon a MetaMask para verlo.</p>
+        <ol style="color:var(--muted);font-size:0.93rem;line-height:2;margin:12px 0 0 18px;">
+          <li>Entrá a <a href="https://chainlist.org/?search=polygon&testnets=false" target="_blank" style="color:#60a8ff">chainlist.org</a></li>
+          <li>Buscá <strong style="color:var(--text);">"Polygon Mainnet"</strong></li>
+          <li>Hacé click en <strong style="color:var(--text);">"Add to MetaMask"</strong> → confirmá en la ventana que aparece</li>
+          <li>MetaMask te va a preguntar si querés cambiar a esa red → aceptá</li>
+        </ol>
+        <div style="background:rgba(26,111,255,0.08);border:1px solid rgba(26,111,255,0.2);border-radius:10px;padding:12px 16px;margin-top:14px;font-size:0.88rem;color:#7aabdf;">
+          ℹ️ También podés agregar Polygon manualmente: en MetaMask → Redes → Agregar red → buscar "Polygon Mainnet"
+        </div>
+        <a href="https://chainlist.org/?search=polygon&testnets=false" target="_blank" rel="noopener"
+           style="display:inline-block;margin-top:14px;background:rgba(130,71,229,0.15);border:1px solid rgba(130,71,229,0.3);color:#b080ff;padding:9px 20px;border-radius:999px;font-size:0.9rem;font-weight:600;text-decoration:none;">
+          🔗 Ir a Chainlist → Agregar Polygon
+        </a>
+      </div>
+    </div>
   </div>
+
+  <!-- PASO 3 -->
+  <div class="step" style="max-width:760px;margin:0 auto 20px;border-radius:20px;">
+    <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+      <div class="step-num" style="flex-shrink:0;">3</div>
+      <div style="flex:1;min-width:220px;">
+        <h3>Importar el token IRN</h3>
+        <p>Una vez en la red Polygon, tenés que decirle a MetaMask que muestre IRN. Esto <strong style="color:var(--text);">no cuesta nada</strong> y el saldo va a aparecer en <strong style="color:#60d890;">0 IRN</strong> — eso es normal.</p>
+        <ol style="color:var(--muted);font-size:0.93rem;line-height:2;margin:12px 0 0 18px;">
+          <li>En MetaMask, asegurate de estar en la red <strong style="color:var(--text);">Polygon Mainnet</strong></li>
+          <li>Hacé click en <strong style="color:var(--text);">"Importar tokens"</strong> (al fondo de la lista de activos)</li>
+          <li>Pegá la dirección del contrato:<br/>
+            <code style="font-size:0.8rem;word-break:break-all;background:rgba(26,111,255,0.1);padding:4px 8px;border-radius:6px;color:#90c0ff;display:inline-block;margin-top:6px;">0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7</code>
+          </li>
+          <li>MetaMask va a completar automáticamente el símbolo <strong style="color:var(--text);">IRN</strong> y los decimales</li>
+          <li>Hacé click en <strong style="color:var(--text);">"Agregar token"</strong></li>
+        </ol>
+        <div style="background:rgba(96,216,144,0.07);border:1px solid rgba(96,216,144,0.2);border-radius:10px;padding:12px 16px;margin-top:14px;font-size:0.88rem;color:#60d890;">
+          ✅ Normal ver <strong>0 IRN</strong> al principio. Significa que el token está correctamente agregado. El saldo aumenta cuando recibís o comprás IRN.
+        </div>
+        <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="add-mm-btn" onclick="addToMetaMask()" style="margin:0;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" width="22" height="22" alt="MetaMask"/>
+            Agregar IRN automáticamente
+          </button>
+        </div>
+        <p style="color:var(--muted);font-size:0.82rem;margin-top:10px;">El botón hace todo en un clic si ya tenés MetaMask instalado y Polygon configurado.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 4 -->
+  <div class="step" style="max-width:760px;margin:0 auto 40px;border-radius:20px;">
+    <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+      <div class="step-num" style="flex-shrink:0;">4</div>
+      <div style="flex:1;min-width:220px;">
+        <h3>Obtener IRN</h3>
+        <p>Tenés dos opciones para cargar tu wallet con IRN:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;">
+          <div style="background:rgba(26,111,255,0.07);border:1px solid rgba(26,111,255,0.18);border-radius:14px;padding:18px;">
+            <div style="font-size:1.4rem;margin-bottom:8px;">🎁</div>
+            <strong style="font-size:0.95rem;">Solicitar gratis</strong>
+            <p style="color:var(--muted);font-size:0.88rem;margin-top:6px;line-height:1.6;">Pedí 500 IRN sin costo en la sección de Airdrop de esta misma página.</p>
+            <a href="#airdrop" style="display:inline-block;margin-top:10px;color:#60a8ff;font-size:0.88rem;font-weight:600;text-decoration:none;">→ Ir al Airdrop</a>
+          </div>
+          <div style="background:rgba(26,111,255,0.07);border:1px solid rgba(26,111,255,0.18);border-radius:14px;padding:18px;">
+            <div style="font-size:1.4rem;margin-bottom:8px;">💱</div>
+            <strong style="font-size:0.95rem;">Comprar en QuickSwap</strong>
+            <p style="color:var(--muted);font-size:0.88rem;margin-top:6px;line-height:1.6;">Cambiá POL (Polygon) por IRN directamente en el exchange descentralizado.</p>
+            <a href="https://dapp.quickswap.exchange/swap?outputCurrency=0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;color:#60a8ff;font-size:0.88rem;font-weight:600;text-decoration:none;">→ Ir a QuickSwap</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
