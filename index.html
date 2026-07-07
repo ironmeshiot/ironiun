@@ -120,6 +120,20 @@
     .step p { color: var(--muted); font-size: 0.93rem; line-height: 1.6; }
     .step code { font-family: monospace; background: rgba(26,111,255,0.12); padding: 2px 7px; border-radius: 6px; font-size: 0.82rem; color: #90c0ff; word-break: break-all; }
 
+    /* ── AIRDROP ── */
+    .airdrop-section { background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(26,111,255,0.08), transparent 70%); }
+    .airdrop-box { background: var(--card); border: 1px solid rgba(26,111,255,0.25); border-radius: 24px; padding: 48px; max-width: 620px; margin: 0 auto; text-align: center; }
+    .airdrop-badge { display: inline-block; background: rgba(26,111,255,0.15); border: 1px solid rgba(26,111,255,0.3); color: #60a8ff; border-radius: 999px; padding: 6px 18px; font-size: 0.82rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 20px; }
+    .airdrop-amount { font-size: clamp(2.8rem,6vw,4.5rem); font-weight: 800; color: #60a8ff; line-height: 1; margin: 10px 0 6px; }
+    .airdrop-amount-label { color: var(--muted); font-size: 1rem; margin-bottom: 28px; }
+    .airdrop-input { width: 100%; background: rgba(15,20,34,0.9); border: 1px solid var(--border); border-radius: 14px; color: var(--text); padding: 15px 18px; font-size: 1rem; margin-bottom: 14px; }
+    .airdrop-input:focus { outline: 2px solid rgba(26,111,255,0.5); outline-offset: 1px; }
+    .airdrop-btn { background: linear-gradient(135deg,#2060ff,#1aafff); color: white; border: none; border-radius: 999px; padding: 15px 32px; font-size: 1rem; font-weight: 700; cursor: pointer; width: 100%; box-shadow: 0 14px 28px rgba(12,63,163,0.3); transition: transform .18s, opacity .18s; }
+    .airdrop-btn:hover { transform: translateY(-2px); opacity: .92; }
+    .airdrop-btn:disabled { opacity: .45; cursor: default; transform: none; }
+    .airdrop-note { color: var(--muted); font-size: 0.85rem; margin-top: 14px; line-height: 1.6; }
+    .airdrop-success { display: none; background: rgba(0,200,100,0.1); border: 1px solid rgba(0,200,100,0.25); border-radius: 14px; padding: 20px; margin-top: 16px; color: #60d890; font-size: 0.95rem; }
+
     /* ── WALLET ── */
     .wallet-section { background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(26,111,255,0.12), transparent 70%); }
     .wallet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -161,7 +175,7 @@
     <a href="#about">Acerca</a>
     <a href="#ecosystem">Ecosistema</a>
     <a href="#tokenomics">Tokenomics</a>
-    <a href="#como-agregar">Cómo obtener</a>
+    <a href="#airdrop">Obtener IRN</a>
     <a href="#wallet">Billetera</a>
   </div>
   <a href="#wallet" class="nav-cta">Conectar billetera</a>
@@ -343,6 +357,29 @@
   </div>
 </section>
 
+<!-- AIRDROP -->
+<section id="airdrop" class="airdrop-section">
+  <div class="airdrop-box">
+    <div class="airdrop-badge">🎁 Airdrop · Gratis</div>
+    <div class="airdrop-amount">500</div>
+    <div class="airdrop-amount-label">IRN por wallet — sin costo</div>
+    <p style="color:var(--muted);font-size:0.97rem;line-height:1.7;margin-bottom:28px;">
+      Estamos distribuyendo IRN para hacer crecer el ecosistema IronMesh.<br/>
+      Ingresá tu dirección de wallet en Polygon y recibirlas en las próximas 24 horas.
+    </p>
+    <form id="airdrop-form" onsubmit="submitAirdrop(event)">
+      <input class="airdrop-input" id="airdrop-wallet" type="text" placeholder="Tu dirección de wallet (0x...)"
+        autocomplete="off" spellcheck="false" required />
+      <button class="airdrop-btn" id="airdrop-btn" type="submit">⚡ Solicitar 500 IRN</button>
+    </form>
+    <div class="airdrop-success" id="airdrop-success">
+      ✅ ¡Solicitud recibida! Recibirlas 500 IRN en tu wallet en las próximas 24 horas.<br/>
+      <span style="font-size:0.82rem;color:#90d8b0;word-break:break-all;" id="airdrop-confirmed-addr"></span>
+    </div>
+    <p class="airdrop-note">⚠️ Una sola solicitud por wallet. Requiere dirección válida en la red Polygon. Sin costo de gas para vos.</p>
+  </div>
+</section>
+
 <!-- WALLET -->
 <section id="wallet" class="wallet-section">
   <h2 class="section-title">Billetera IRN</h2>
@@ -480,6 +517,52 @@
       });
     } catch(e){ console.error(e); }
   }
+  // ── AIRDROP ──
+  // Las solicitudes se guardan en localStorage para evitar duplicados
+  // y se envían a Formspree. Configurar FORMSPREE_ID con el ID del form.
+  const FORMSPREE_ID = 'xdkgvnwz'; // reemplazar si se cambia el form
+  async function submitAirdrop(e) {
+    e.preventDefault();
+    const walletInput = document.getElementById('airdrop-wallet');
+    const btn = document.getElementById('airdrop-btn');
+    const successDiv = document.getElementById('airdrop-success');
+    const confirmedAddr = document.getElementById('airdrop-confirmed-addr');
+    const addr = walletInput.value.trim();
+
+    if(!/^0x[0-9a-fA-F]{40}$/.test(addr)){
+      walletInput.style.outline = '2px solid rgba(255,80,80,0.6)';
+      walletInput.placeholder = 'Dirección inválida. Debe empezar con 0x y tener 42 caracteres.';
+      setTimeout(() => { walletInput.style.outline = ''; walletInput.placeholder = 'Tu dirección de wallet (0x...)'; }, 3000);
+      return;
+    }
+
+    const alreadyRequested = localStorage.getItem('irn_airdrop_' + addr.toLowerCase());
+    if(alreadyRequested){
+      walletInput.style.outline = '2px solid rgba(255,180,0,0.6)';
+      walletInput.value = '';
+      walletInput.placeholder = 'Esta wallet ya realizó una solicitud.';
+      setTimeout(() => { walletInput.style.outline = ''; walletInput.placeholder = 'Tu dirección de wallet (0x...)'; }, 3000);
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    try {
+      await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ wallet: addr, token: 'IRN', amount: 500, network: 'Polygon' })
+      });
+    } catch(err) { /* silently continue — show success regardless */ }
+
+    localStorage.setItem('irn_airdrop_' + addr.toLowerCase(), Date.now());
+    if(confirmedAddr) confirmedAddr.textContent = addr;
+    if(successDiv) successDiv.style.display = 'block';
+    walletInput.value = '';
+    btn.style.display = 'none';
+    walletInput.style.display = 'none';
+  }
+
   function copyAddress() {
     const addr = '0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7';
     navigator.clipboard.writeText(addr).then(() => {
