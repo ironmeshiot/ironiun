@@ -35,6 +35,25 @@
       min-height: 100vh;
     }
 
+    /* ── PRICE WIDGET ── */
+    .price-section { padding: 60px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(26,111,255,0.02); }
+    .price-section > div { max-width: 1100px; margin: 0 auto; }
+    .price-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 28px; }
+    .price-live-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(96,216,144,0.1); border: 1px solid rgba(96,216,144,0.25); color: #60d890; border-radius: 999px; padding: 5px 14px; font-size: 0.82rem; font-weight: 600; }
+    .price-live-dot { width: 7px; height: 7px; border-radius: 50%; background: #60d890; animation: blink 1.2s infinite; }
+    .price-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .price-link-btn { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: 999px; font-size: 0.88rem; font-weight: 600; text-decoration: none; border: 1px solid var(--border); color: var(--muted); transition: border-color .2s, color .2s; }
+    .price-link-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+    .price-link-btn.dex { border-color: rgba(0,200,160,0.3); color: #40d8b8; }
+    .price-link-btn.dex:hover { background: rgba(0,200,160,0.07); }
+    .price-link-btn.cg { border-color: rgba(140,210,60,0.3); color: #a0d840; }
+    .price-link-btn.cg:hover { background: rgba(140,210,60,0.07); }
+    .price-link-btn.qs { border-color: rgba(0,180,255,0.3); color: #40b8ff; }
+    .price-link-btn.qs:hover { background: rgba(0,180,255,0.07); }
+    #dexscreener-embed { position: relative; width: 100%; padding-bottom: 56%; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+    #dexscreener-embed iframe { position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: 0; }
+    @media(max-width: 768px) { #dexscreener-embed { padding-bottom: 100%; } }
+
     /* ── NOTIF BAR ── */
     .notif-bar { background: linear-gradient(90deg, #0d1a3a, #0a1428, #0d1a3a); border-bottom: 1px solid rgba(26,111,255,0.2); padding: 9px 20px; text-align: center; font-size: 0.88rem; font-weight: 500; cursor: pointer; position: relative; overflow: hidden; user-select: none; }
     .notif-bar::before { content:''; position:absolute; inset:0; background: linear-gradient(90deg, transparent, rgba(26,111,255,0.06), transparent); animation: shimmer 3s infinite; }
@@ -235,6 +254,7 @@
   </div>
   <div class="nav-links">
     <a href="#about">Acerca</a>
+    <a href="#precio">Precio</a>
     <a href="#ecosystem">Ecosistema</a>
     <a href="#servicios">Servicios</a>
     <a href="#airdrop">Airdrop</a>
@@ -258,10 +278,36 @@
 <!-- STATS -->
 <div class="stats-bar full">
   <div class="stat"><div class="stat-value">100,000,000</div><div class="stat-label">Supply total IRN</div></div>
+  <div class="stat"><div class="stat-value" id="irn-price-stat">—</div><div class="stat-label">Precio IRN (USD)</div></div>
+  <div class="stat"><div class="stat-value" id="irn-liq-stat">—</div><div class="stat-label">Liquidez pool</div></div>
   <div class="stat"><div class="stat-value">Polygon</div><div class="stat-label">Red blockchain</div></div>
-  <div class="stat"><div class="stat-value">18</div><div class="stat-label">Decimales</div></div>
-  <div class="stat"><div class="stat-value">Verificado</div><div class="stat-label">Sourcify & Blockscout</div></div>
 </div>
+
+<!-- PRECIO EN VIVO -->
+<section class="price-section" id="precio">
+  <div>
+    <div class="price-header">
+      <div>
+        <h2 class="section-title" style="margin-bottom:6px;">Precio en vivo</h2>
+        <div class="price-live-badge"><div class="price-live-dot"></div> Actualizado en tiempo real</div>
+      </div>
+      <div class="price-links">
+        <a class="price-link-btn dex" href="https://dexscreener.com/polygon/0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7" target="_blank" rel="noopener">
+          📊 DexScreener
+        </a>
+        <a class="price-link-btn qs" href="https://dapp.quickswap.exchange/swap?outputCurrency=0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7" target="_blank" rel="noopener">
+          💱 QuickSwap
+        </a>
+        <a class="price-link-btn cg" href="https://www.coingecko.com/en/coins/ironiun" target="_blank" rel="noopener">
+          🦎 CoinGecko
+        </a>
+      </div>
+    </div>
+    <div id="dexscreener-embed">
+      <iframe src="https://dexscreener.com/polygon/0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7?embed=1&theme=dark&trades=1&info=0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
 
 <!-- ABOUT -->
 <section id="about">
@@ -763,6 +809,27 @@
       });
     } catch(e){ console.error(e); }
   }
+  // ── DEXSCREENER STATS ──
+  async function loadDexStats() {
+    try {
+      const res = await fetch('https://api.dexscreener.com/latest/dex/tokens/0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7');
+      const data = await res.json();
+      const pair = data?.pairs?.[0];
+      if (!pair) return;
+      const price = parseFloat(pair.priceUsd);
+      const liq   = parseFloat(pair.liquidity?.usd || 0);
+      const priceEl = document.getElementById('irn-price-stat');
+      const liqEl   = document.getElementById('irn-liq-stat');
+      if (priceEl) priceEl.textContent = price < 0.0001
+        ? '$' + price.toExponential(2)
+        : '$' + price.toFixed(6);
+      if (liqEl) liqEl.textContent = liq >= 1000
+        ? '$' + (liq / 1000).toFixed(1) + 'K'
+        : '$' + liq.toFixed(0);
+    } catch(e) {}
+  }
+  loadDexStats();
+
   // ── NOTIF BAR ──
   const notifMessages = [
     { text: '🎁 Obtené 500 IRN gratis — Solicitá tu airdrop sin costo',        cta: 'Solicitar →',  href: '#airdrop'   },
