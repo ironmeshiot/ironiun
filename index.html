@@ -35,6 +35,16 @@
       min-height: 100vh;
     }
 
+    /* ── NOTIF BAR ── */
+    .notif-bar { background: linear-gradient(90deg, #0d1a3a, #0a1428, #0d1a3a); border-bottom: 1px solid rgba(26,111,255,0.2); padding: 9px 20px; text-align: center; font-size: 0.88rem; font-weight: 500; cursor: pointer; position: relative; overflow: hidden; user-select: none; }
+    .notif-bar::before { content:''; position:absolute; inset:0; background: linear-gradient(90deg, transparent, rgba(26,111,255,0.06), transparent); animation: shimmer 3s infinite; }
+    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+    .notif-messages { display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .notif-dot { width: 6px; height: 6px; border-radius: 50%; background: #60a8ff; animation: blink 1.5s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes blink { 0%,100%{ opacity:1; } 50%{ opacity:0.3; } }
+    .notif-text { color: #a8c8f0; transition: opacity .4s; }
+    .notif-cta { background: rgba(26,111,255,0.2); border: 1px solid rgba(26,111,255,0.35); color: #60a8ff; border-radius: 999px; padding: 3px 12px; font-size: 0.82rem; font-weight: 600; margin-left: 8px; white-space: nowrap; }
+
     /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 100;
@@ -65,7 +75,8 @@
       background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(26,111,255,0.18), transparent 70%);
       padding: 80px 24px 60px;
     }
-    .hero-logo { width: 110px; height: 110px; border-radius: 50%; box-shadow: 0 0 40px rgba(26,111,255,0.5), 0 0 80px rgba(26,111,255,0.2); margin-bottom: 28px; }
+    .hero-logo { width: 170px; height: 170px; border-radius: 50%; box-shadow: 0 0 60px rgba(26,111,255,0.55), 0 0 120px rgba(26,111,255,0.22), 0 0 200px rgba(26,111,255,0.1); margin-bottom: 32px; animation: pulse-logo 4s ease-in-out infinite; }
+    @keyframes pulse-logo { 0%,100% { box-shadow: 0 0 60px rgba(26,111,255,0.55), 0 0 120px rgba(26,111,255,0.22); } 50% { box-shadow: 0 0 80px rgba(26,111,255,0.75), 0 0 160px rgba(26,111,255,0.35); } }
     .hero h1 { font-size: clamp(2.8rem,6vw,5rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; }
     .hero h1 span { background: linear-gradient(90deg, #60a8ff, #1a6fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero-sub { color: var(--muted); font-size: clamp(1rem,2vw,1.25rem); margin: 18px 0 36px; max-width: 520px; line-height: 1.6; }
@@ -206,6 +217,15 @@
   </style>
 </head>
 <body>
+
+<!-- NOTIF BAR -->
+<div class="notif-bar" id="notif-bar" onclick="notifClick()">
+  <div class="notif-messages">
+    <div class="notif-dot"></div>
+    <span class="notif-text" id="notif-text">🎁 Obtené 500 IRN gratis — Solicitá tu airdrop sin costo</span>
+    <span class="notif-cta" id="notif-cta">Solicitar →</span>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -743,6 +763,37 @@
       });
     } catch(e){ console.error(e); }
   }
+  // ── NOTIF BAR ──
+  const notifMessages = [
+    { text: '🎁 Obtené 500 IRN gratis — Solicitá tu airdrop sin costo',        cta: 'Solicitar →',  href: '#airdrop'   },
+    { text: '🌐 Creá tu web pagando con IRN — Servicios desde 500 IRN',         cta: 'Ver servicios →', href: '#servicios' },
+    { text: '💱 Comprá IRN en QuickSwap — Pool de liquidez activo en Polygon',  cta: 'Comprar →',    href: 'https://dapp.quickswap.exchange/swap?outputCurrency=0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7' },
+    { text: '⚡ IRN: el token nativo del ecosistema IronMesh · 100M supply fijo', cta: 'Saber más →',  href: '#about'     },
+    { text: '🦊 Agregá IRN a MetaMask en un clic — gratis, sin costo de gas',   cta: 'Agregar →',    href: '#como-agregar' },
+  ];
+  let notifIdx = 0;
+  const notifTextEl = document.getElementById('notif-text');
+  const notifCtaEl  = document.getElementById('notif-cta');
+  let notifTarget = notifMessages[0].href;
+
+  function rotateNotif() {
+    if(!notifTextEl) return;
+    notifTextEl.style.opacity = '0';
+    setTimeout(() => {
+      notifIdx = (notifIdx + 1) % notifMessages.length;
+      const m = notifMessages[notifIdx];
+      notifTextEl.textContent = m.text;
+      notifCtaEl.textContent  = m.cta;
+      notifTarget = m.href;
+      notifTextEl.style.opacity = '1';
+    }, 400);
+  }
+  function notifClick() {
+    if(notifTarget.startsWith('http')) { window.open(notifTarget, '_blank', 'noopener'); }
+    else { document.querySelector(notifTarget)?.scrollIntoView({ behavior: 'smooth' }); }
+  }
+  setInterval(rotateNotif, 4500);
+
   // ── SERVICIOS ──
   const IRONMESH_WALLET = '0x0ea2bf929e452ee0780e2268d1ccaf9236b2c02b';
 
