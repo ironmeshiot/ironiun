@@ -70,13 +70,14 @@
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 56px;
-      background: linear-gradient(90deg, rgba(26,111,255,0.92), rgba(47,134,255,0.92), rgba(26,111,255,0.92));
+      padding: 9px 56px;
+      background: linear-gradient(90deg, rgba(15,85,225,0.96), rgba(30,110,240,0.96), rgba(15,85,225,0.96));
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(96,168,255,0.4);
     }
-    .nav-brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.3rem; }
-    .nav-brand img { width: 46px; height: 46px; border-radius: 50%; box-shadow: 0 0 14px var(--blue-glow); }
+    .nav-brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.2rem; }
+    .nav-brand img { width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 0 14px var(--blue-glow); }
+    .nav-social { display: flex; align-items: center; gap: 8px; }
     .nav-links { display: flex; gap: 24px; }
     .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem; transition: color .2s; }
     .nav-links a:hover { color: #ffffff; }
@@ -263,8 +264,10 @@
     <a href="#wallet">Billetera</a>
   </div>
   <a href="#wallet" class="nav-cta">Conectar billetera</a>
-  <a href="https://t.me/+hyw7eUQ779RkZDBh" target="_blank" rel="noopener" style="background:rgba(38,170,255,0.15);border:1px solid rgba(38,170,255,0.3);color:#40aaff;padding:9px 12px;border-radius:999px;font-size:1.1rem;text-decoration:none;display:flex;align-items:center;" title="Telegram">✈️</a>
-  <a href="https://x.com/IroniunIRN" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#e4edf7;padding:9px 12px;border-radius:999px;font-size:1.1rem;text-decoration:none;display:flex;align-items:center;" title="X / Twitter">🖤</a>
+  <div class="nav-social">
+  <a href="https://t.me/+hyw7eUQ779RkZDBh" target="_blank" rel="noopener" style="background:rgba(38,170,255,0.15);border:1px solid rgba(38,170,255,0.3);color:#40aaff;padding:8px 11px;border-radius:999px;font-size:1.05rem;text-decoration:none;display:flex;align-items:center;" title="Telegram">✈️</a>
+  <a href="https://x.com/IroniunIRN" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#e4edf7;padding:8px 11px;border-radius:999px;font-size:1.05rem;text-decoration:none;display:flex;align-items:center;" title="X / Twitter">🖤</a>
+  </div>
 </nav>
 
 <!-- HERO -->
