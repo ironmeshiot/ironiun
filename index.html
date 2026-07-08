@@ -259,7 +259,6 @@
     <a href="#about">Acerca</a>
     <a href="#precio">Precio</a>
     <a href="#ecosystem">Ecosistema</a>
-    <a href="#servicios">Servicios</a>
     <a href="#airdrop">Airdrop</a>
     <a href="#wallet">Billetera</a>
   </div>
@@ -546,122 +545,6 @@
     </div>
   </div>
 </section>
-
-<!-- SERVICIOS -->
-<section id="servicios" style="border-top:1px solid var(--border);">
-  <h2 class="section-title">Servicios pagables con IRN</h2>
-  <p class="section-sub">Usá los IRN que recibiste gratis para contratar servicios reales. Cada pago crea utilidad real para el token.</p>
-
-  <div class="srv-grid">
-    <div class="srv-card">
-      <span class="srv-tag basic">Básico</span>
-      <div class="srv-price">500 <span>IRN</span></div>
-      <div class="srv-title">Landing Page</div>
-      <ul class="srv-features">
-        <li>1 página estática moderna</li>
-        <li>Diseño responsivo (móvil + desktop)</li>
-        <li>Secciones: hero, sobre vos, contacto</li>
-        <li>Formulario de contacto funcional</li>
-        <li>Entrega en 72 horas</li>
-      </ul>
-      <button class="srv-btn" onclick="openModal('Landing Page', 500)">Contratar con IRN</button>
-    </div>
-
-    <div class="srv-card featured">
-      <span class="srv-tag popular">⭐ Popular</span>
-      <div class="srv-price">500 <span>IRN</span></div>
-      <div class="srv-title">Portfolio / CV Digital</div>
-      <ul class="srv-features">
-        <li>Página personal profesional</li>
-        <li>Secciones: bio, proyectos, skills, contacto</li>
-        <li>Links a redes sociales / GitHub</li>
-        <li>Diseño personalizable</li>
-        <li>Entrega en 72 horas</li>
-      </ul>
-      <button class="srv-btn" onclick="openModal('Portfolio / CV Digital', 500)">Contratar con IRN</button>
-    </div>
-
-    <div class="srv-card">
-      <span class="srv-tag pro">Negocio</span>
-      <div class="srv-price">1,000 <span>IRN</span></div>
-      <div class="srv-title">Menú Digital QR</div>
-      <ul class="srv-features">
-        <li>Menú online para restaurante / negocio</li>
-        <li>Categorías, productos y precios</li>
-        <li>Código QR listo para imprimir</li>
-        <li>Actualizable fácilmente</li>
-        <li>Entrega en 5 días</li>
-      </ul>
-      <button class="srv-btn" onclick="openModal('Menú Digital QR', 1000)">Contratar con IRN</button>
-    </div>
-
-    <div class="srv-card">
-      <span class="srv-tag premium">Premium</span>
-      <div class="srv-price">2,000 <span>IRN</span></div>
-      <div class="srv-title">Sitio Multi-página</div>
-      <ul class="srv-features">
-        <li>Hasta 3 páginas (inicio, servicios, contacto)</li>
-        <li>Formulario de contacto funcional</li>
-        <li>Integración con Google Maps</li>
-        <li>Optimizado para buscadores (SEO básico)</li>
-        <li>Entrega en 7 días</li>
-      </ul>
-      <button class="srv-btn" onclick="openModal('Sitio Multi-página', 2000)">Contratar con IRN</button>
-    </div>
-  </div>
-
-  <div style="background:rgba(96,216,144,0.06);border:1px solid rgba(96,216,144,0.18);border-radius:16px;padding:20px 28px;margin-top:36px;max-width:700px;margin-left:auto;margin-right:auto;font-size:0.92rem;color:var(--muted);line-height:1.7;">
-    💡 <strong style="color:var(--text);">¿Cómo funciona?</strong> Completás el formulario → enviás los IRN a nuestra wallet → nos avisás → entregamos tu servicio. Sin intermediarios, sin cargos ocultos. El pago queda registrado en la blockchain de Polygon.
-  </div>
-</section>
-
-<!-- MODAL DE CONTRATACIÓN -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div id="modal-form-content">
-      <h2 id="modal-title">Contratar servicio</h2>
-      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:20px;">Completá el formulario y enviá el pago en IRN. Te contactamos en menos de 24 horas.</p>
-      <form id="service-form" onsubmit="submitService(event)">
-        <input type="hidden" id="modal-service-name" name="servicio" />
-        <input type="hidden" id="modal-service-price" name="precio_irn" />
-        <div class="mfield">
-          <label>Tu nombre</label>
-          <input type="text" name="nombre" placeholder="Nombre completo" required />
-        </div>
-        <div class="mfield">
-          <label>Email de contacto</label>
-          <input type="email" name="email" placeholder="tu@email.com" required />
-        </div>
-        <div class="mfield">
-          <label>Contame qué necesitás</label>
-          <textarea name="descripcion" placeholder="Describí brevemente tu proyecto, rubro, colores, referencias, etc." required></textarea>
-        </div>
-        <div class="mfield">
-          <label>Tu wallet de Polygon (para verificar el pago)</label>
-          <input type="text" id="service-wallet" name="wallet_pagador" placeholder="0x..." required />
-        </div>
-
-        <div class="modal-pay-box">
-          <strong>Paso siguiente: enviá el pago</strong>
-          <p style="color:var(--muted);margin-top:6px;">Enviá <strong id="modal-price-display" style="color:#60d890;"></strong> a esta wallet en la red Polygon:</p>
-          <div class="modal-pay-addr" id="pay-addr-display" onclick="copyPayAddr()" title="Click para copiar">
-            0x0ea2bf929e452ee0780e2268d1ccaf9236b2c02b
-          </div>
-          <p style="color:var(--muted);font-size:0.8rem;margin-top:8px;">Click en la dirección para copiar · Solo red Polygon</p>
-        </div>
-
-        <button class="modal-submit" type="submit">📨 Enviar solicitud</button>
-      </form>
-    </div>
-    <div class="modal-success" id="modal-success">
-      <div class="big-check">✅</div>
-      <h2 style="margin-bottom:10px;">¡Solicitud enviada!</h2>
-      <p style="color:var(--muted);line-height:1.7;">Recibimos tu pedido. Una vez que confirmemos el pago en la blockchain, nos ponemos en contacto por email en menos de 24 horas.</p>
-      <button onclick="closeModal()" style="margin-top:20px;background:rgba(255,255,255,0.07);border:1px solid var(--border);color:var(--text);border-radius:999px;padding:11px 28px;font-size:0.95rem;cursor:pointer;">Cerrar</button>
-    </div>
-  </div>
-</div>
 
 <!-- AIRDROP -->
 <section id="airdrop" class="airdrop-section">
