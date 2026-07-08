@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Security: Content-Security-Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; frame-src https://dexscreener.com; connect-src 'self' https://api.dexscreener.com https://formspree.io https://polygon-rpc.com https://rpc-mainnet.maticvigil.com; font-src 'self' data:;">
   <title>Ironiun (IRN) — El token del ecosistema IronMesh</title>
   <meta name="description" content="Ironiun (IRN) es el token nativo del ecosistema IronMesh: IoT, automatización inteligente y servicios descentralizados. ERC-20 en Polygon POS."/>
   <!-- OG / WhatsApp / Twitter preview -->
@@ -306,7 +308,10 @@
       </div>
     </div>
     <div id="dexscreener-embed">
-      <iframe src="https://dexscreener.com/polygon/0x265A8A2E022BA3DD28c7E0aeC393C0A33b931279?embed=1&theme=dark&trades=1&info=0" allowfullscreen></iframe>
+      <iframe src="https://dexscreener.com/polygon/0x265A8A2E022BA3DD28c7E0aeC393C0A33b931279?embed=1&theme=dark&trades=1&info=0"
+        sandbox="allow-scripts allow-same-origin allow-popups"
+        referrerpolicy="no-referrer"
+        allowfullscreen></iframe>
     </div>
   </div>
 </section>
@@ -722,7 +727,9 @@
   <div style="margin-top:12px;">Contrato: 0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7 · Polygon Mainnet</div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/ethers@6.9.1/dist/ethers.umd.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.9.1/dist/ethers.umd.min.js"
+  integrity="sha384-i2kmNe5cQm6VBIKfV9St0yajORsRQDduGy7Xl7yGYMMT7JIob2WJ5UhWNuZEiRkn"
+  crossorigin="anonymous"></script>
 <script>
   const contractAddress = "0x1C7B7b638DbA49e96784d1f4dD99A0622Df0EAB7";
   const IRN_ABI = [
@@ -935,6 +942,8 @@
 
     const alreadyRequested = localStorage.getItem('irn_airdrop_' + addr.toLowerCase());
     if(alreadyRequested){
+      const elapsed = Date.now() - parseInt(alreadyRequested);
+      if(elapsed < 7 * 24 * 60 * 60 * 1000) { // 7 días
       walletInput.style.outline = '2px solid rgba(255,180,0,0.6)';
       walletInput.value = '';
       walletInput.placeholder = 'Esta wallet ya realizó una solicitud.';
