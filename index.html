@@ -84,6 +84,8 @@
     .nav-cta { background: #ffffff; color: var(--blue); padding: 9px 20px; border-radius: 999px; font-size: 0.9rem; font-weight: 700; text-decoration: none; box-shadow: 0 0 18px rgba(255,255,255,0.3); transition: opacity .2s; }
     .nav-cta:hover { opacity: .85; }
     @media (max-width:640px) { .nav-links { display:none; } nav { padding: 12px 18px; } .nav-brand img { width: 38px; height: 38px; } .nav-brand { font-size: 1.1rem; } }
+    @media (max-width:768px) { #vision .vision-grid-2 { grid-template-columns:1fr !important; } #vision .vision-grid-4 { grid-template-columns:1fr 1fr !important; } }
+    @media (max-width:480px) { #vision .vision-grid-4 { grid-template-columns:1fr !important; } }
 
     /* ── SECTIONS ── */
     section { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
@@ -274,6 +276,7 @@
     <a href="#about">Acerca</a>
     <a href="#precio">Precio</a>
     <a href="#ecosystem">Ecosistema</a>
+    <a href="#vision">Visión</a>
     <a href="#airdrop">Airdrop</a>
     <a href="#wallet">Billetera</a>
   </div>
@@ -559,6 +562,98 @@
       </div>
     </div>
   </div>
+</section>
+
+<!-- VISION -->
+<section id="vision" style="border-top:1px solid var(--border);">
+  <h2 class="section-title">La visión detrás de IRN</h2>
+  <p class="section-sub">IRN no es un token especulativo. Es la moneda que hace funcionar un ecosistema real de hardware, software y servicios.</p>
+
+  <!-- BLOQUE 1: ECONOMIA -->
+  <div class="vision-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:64px;">
+    <div style="background:rgba(26,111,255,0.06);border:1px solid rgba(26,111,255,0.18);border-radius:20px;padding:36px 32px;">
+      <div style="font-size:2rem;margin-bottom:16px;">⚙️</div>
+      <h3 style="color:var(--text);font-size:1.2rem;margin-bottom:12px;">IRN como economía del ecosistema</h3>
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:20px;">Cada producto del ecosistema IronMesh opera con IRN como medio de intercambio nativo. No es una promesa futura — es la arquitectura económica que conecta todos los servicios.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:12px;color:var(--muted);font-size:0.9rem;"><span style="color:#60a8ff;font-weight:700;">Homyx</span> — domótica hogareña: control de luces, sensores, automatización</div>
+        <div style="display:flex;align-items:center;gap:12px;color:var(--muted);font-size:0.9rem;"><span style="color:#60a8ff;font-weight:700;">AgroPulse</span> — IoT para agro: monitoreo de campo, temperatura, humedad</div>
+        <div style="display:flex;align-items:center;gap:12px;color:var(--muted);font-size:0.9rem;"><span style="color:#60a8ff;font-weight:700;">Syncraft</span> — automatización industrial: control de procesos y planta</div>
+        <div style="display:flex;align-items:center;gap:12px;color:var(--muted);font-size:0.9rem;"><span style="color:#60a8ff;font-weight:700;">DomoticX OS</span> — plataforma base: generación de firmware, GPIO, dashboards</div>
+        <div style="display:flex;align-items:center;gap:12px;color:var(--muted);font-size:0.9rem;"><span style="color:#60a8ff;font-weight:700;">IronMarket</span> — análisis de mercado y bot de trading en tiempo real</div>
+      </div>
+    </div>
+    <div style="background:rgba(96,168,255,0.04);border:1px solid rgba(96,168,255,0.14);border-radius:20px;padding:36px 32px;">
+      <div style="font-size:2rem;margin-bottom:16px;">📡</div>
+      <h3 style="color:var(--text);font-size:1.2rem;margin-bottom:12px;">La red LoRa descentralizada</h3>
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:20px;">IronMesh construye una red de nodos ESP32+LoRa de bajo costo que no depende de internet ni de cobertura celular. Alcance de hasta 15 km. Ideal para zonas rurales, industrias y ciudades.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <span style="color:#60a8ff;font-size:1.1rem;margin-top:2px;">◈</span>
+          <div><strong style="color:var(--text);font-size:0.92rem;">Nodos armados por el usuario</strong><br/><span style="color:var(--muted);font-size:0.87rem;">Hardware abierto, bajo costo (~$15 USD por nodo), documentación completa.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <span style="color:#60a8ff;font-size:1.1rem;margin-top:2px;">◈</span>
+          <div><strong style="color:var(--text);font-size:0.92rem;">Incentivo en IRN</strong><br/><span style="color:var(--muted);font-size:0.87rem;">Los operadores de nodos que contribuyen cobertura a la red reciben IRN por su participación.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <span style="color:#60a8ff;font-size:1.1rem;margin-top:2px;">◈</span>
+          <div><strong style="color:var(--text);font-size:0.92rem;">Sin intermediarios</strong><br/><span style="color:var(--muted);font-size:0.87rem;">La red es peer-to-peer. Los datos viajan entre nodos sin pasar por servidores centrales.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <h3 style="text-align:center;font-size:1.15rem;color:var(--text);margin-bottom:36px;">Cómo lo vamos a construir</h3>
+  <div class="vision-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+    <div style="background:rgba(96,216,144,0.06);border:1px solid rgba(96,216,144,0.2);border-radius:16px;padding:24px 20px;position:relative;">
+      <div style="background:#60d890;color:#000;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:14px;">AHORA · Q3 2026</div>
+      <h4 style="color:var(--text);font-size:0.95rem;margin-bottom:10px;">Fundamentos</h4>
+      <ul style="color:var(--muted);font-size:0.85rem;line-height:1.8;padding-left:16px;">
+        <li>Token IRN en Polygon ✓</li>
+        <li>Pool QuickSwap activo ✓</li>
+        <li>Landing + airdrop ✓</li>
+        <li>Prototipo Homyx físico</li>
+        <li>Primeros nodos LoRa</li>
+      </ul>
+    </div>
+    <div style="background:rgba(26,111,255,0.06);border:1px solid rgba(26,111,255,0.18);border-radius:16px;padding:24px 20px;">
+      <div style="background:rgba(26,111,255,0.25);color:#60a8ff;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:14px;">Q4 2026</div>
+      <h4 style="color:var(--text);font-size:0.95rem;margin-bottom:10px;">Homyx + AgroPulse</h4>
+      <ul style="color:var(--muted);font-size:0.85rem;line-height:1.8;padding-left:16px;">
+        <li>Lanzamiento Homyx v1</li>
+        <li>Kit de nodo vendible</li>
+        <li>AgroPulse beta</li>
+        <li>DomoticX OS público</li>
+        <li>Primeros clientes reales</li>
+      </ul>
+    </div>
+    <div style="background:rgba(168,96,255,0.05);border:1px solid rgba(168,96,255,0.15);border-radius:16px;padding:24px 20px;">
+      <div style="background:rgba(168,96,255,0.2);color:#c096ff;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:14px;">Q1 2027</div>
+      <h4 style="color:var(--text);font-size:0.95rem;margin-bottom:10px;">Red + Syncraft</h4>
+      <ul style="color:var(--muted);font-size:0.85rem;line-height:1.8;padding-left:16px;">
+        <li>Red LoRa con incentivos IRN</li>
+        <li>Syncraft v1 industrial</li>
+        <li>Mapa de nodos activos</li>
+        <li>Integración IronMarket + IoT</li>
+        <li>Búsqueda de inversores</li>
+      </ul>
+    </div>
+    <div style="background:rgba(255,160,50,0.04);border:1px solid rgba(255,160,50,0.12);border-radius:16px;padding:24px 20px;">
+      <div style="background:rgba(255,160,50,0.18);color:#ffa032;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:14px;">Q2 2027</div>
+      <h4 style="color:var(--text);font-size:0.95rem;margin-bottom:10px;">Escala</h4>
+      <ul style="color:var(--muted);font-size:0.85rem;line-height:1.8;padding-left:16px;">
+        <li>100+ nodos activos</li>
+        <li>IronMesh como red pública</li>
+        <li>Multi-tenant DomoticX</li>
+        <li>App móvil PWA</li>
+        <li>Expansión regional</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:28px;">* El roadmap es orientativo y puede ajustarse según la evolución del ecosistema y la comunidad.</p>
 </section>
 
 <!-- AIRDROP -->
